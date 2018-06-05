@@ -1,6 +1,12 @@
 {% extends 'dashboard/base.html' %}
  
 {% block content %}
+<script>
+$('button').click(function(event) {
+    event.stopPropagation();
+    alert("adsfasdfasf");
+});
+</script>
             <!-- MAIN CONTENT-->
             <div class="main-content">
                 <div class="section__content section__content--p30">
@@ -9,8 +15,6 @@
                             <div class="col-md-12">
                                 <div class="overview-wrap">
                                     <h2 class="title-1">overview</h2>
-                                    <button class="au-btn au-btn-icon au-btn--blue">
-                                        <i class="zmdi zmdi-plus"></i>add item</button>
                                 </div>
                             </div>
                         </div>
@@ -24,11 +28,8 @@
                                             </div>
                                             <div class="text">
                                                 <h2>{{Vmnum}}</h2>
-                                                <span>Number Of Vm</span>
+                                                <span>Num Of Vm</span>
                                             </div>
-                                        </div>
-                                        <div class="overview-chart">
-                                            <canvas id="widgetChart1"></canvas>
                                         </div>
                                     </div>
                                 </div>
@@ -42,11 +43,8 @@
                                             </div>
                                             <div class="text">
                                                 <h2>{{Crashnum}}</h2>
-                                                <span>Number Of Crash</span>
+                                                <span>Num Of Crash</span>
                                             </div>
-                                        </div>
-                                        <div class="overview-chart">
-                                            <canvas id="widgetChart2"></canvas>
                                         </div>
                                     </div>
                                 </div>
@@ -59,12 +57,9 @@
                                                 <i class="zmdi zmdi-calendar-note"></i>
                                             </div>
                                             <div class="text">
-                                                <h2>1,086</h2>
-                                                <span>this week</span>
+                                                <h2>0</h2>
+                                                <span>Total Docker</span>
                                             </div>
-                                        </div>
-                                        <div class="overview-chart">
-                                            <canvas id="widgetChart3"></canvas>
                                         </div>
                                     </div>
                                 </div>
@@ -77,12 +72,9 @@
                                                 <i class="zmdi zmdi-money"></i>
                                             </div>
                                             <div class="text">
-                                                <h2>$1,060,386</h2>
-                                                <span>total earnings</span>
+                                                <h2>0</h2>
+                                                <span>Run docker</span>
                                             </div>
-                                        </div>
-                                        <div class="overview-chart">
-                                            <canvas id="widgetChart4"></canvas>
                                         </div>
                                     </div>
                                 </div>
@@ -93,13 +85,7 @@
                             <div class="col-md-12">
                                 <!-- DATA TABLE -->
                                 <h3 class="title-5 m-b-35">data table</h3>
-                                
-
-
                             <!-- Vm_list~~~~~ -->
-
-
-
                                 <div class="table-responsive table-responsive-data2">
                                     <table class="table table-data2">
                                         <thead>
@@ -111,30 +97,36 @@
                                                 <th>Port</th>
                                             </tr>
                                         </thead>
+                                        
+
                                         <tbody>
                                             {% for Vm in Vm %}
+                                            <div class="crash">
                                             <tr class="tr-shadow">
-                                                <td>{{Vm.VM_Name}}</td>
-                                                <td>
+                                                <td onclick=location.href="{% url 'crash_view' ip=Vm.VM_ip program=Vm.Program %}";>
+                                                {{Vm.VM_Name}}</td>
+                                                <td onclick=location.href="{% url 'crash_view' ip=Vm.VM_ip program=Vm.Program %}";>
                                                     <span class="block-email">{{Vm.VM_ip}}</span>
                                                 </td>
-                                                <td>{{Vm.Fuzzer}}</td>
-                                                <td class="desc">{{Vm.Program}}</td>
-                                                <td>{{Vm.Port}}</td>
+                                                 <td onclick=location.href="{% url 'crash_view' ip=Vm.VM_ip program=Vm.Program %}";>{{Vm.Fuzzer}}</td>
+                                                 <td class="desc" onclick=location.href="{% url 'crash_view' ip=Vm.VM_ip program=Vm.Program %}";>{{Vm.Program}}</td>
+                                                 <td onclick=location.href="{% url 'crash_view' ip=Vm.VM_ip program=Vm.Program %}";>{{Vm.Port}}</td>
                                                 <td>
                                                     <div class="table-data-feature">
                                                         <button class="item" data-toggle="tooltip" data-placement="top" title="Ping">
                                                             <i class="zmdi zmdi-mail-send"></i>
                                                         </button>
-                                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                        <a href="{% url 'vm_delete' Vm_name=Vm.VM_Name %}"><button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
                                                             <i class="zmdi zmdi-delete"></i>
                                                         </button>
+                                                    </a>
                                                     </div>
                                                 </td>
                                             </tr>
-                                            {% endfor %}
+                                        </div>
+                                            {% endfor %}              
                                         </tbody>
-
+                                        
                                     </table>
                                 </div>
                                 <!-- END DATA TABLE -->

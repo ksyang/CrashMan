@@ -5,6 +5,8 @@ Project:  CoolAdmin
 Version:	1.0
 Last change:	08/10/2018 [Add Define a table of contents Link]
 Assigned to:	Hau Nguyen
+
+
 Primary use:	Open Source
 -------------------------------------------------------------------*/
 /*------------------------------------------------------------------
@@ -83,6 +85,7 @@ p {
 
 .table-responsive {
     padding-right: 1px;
+    z-index: 50;
 }
 
 .card {
@@ -4259,7 +4262,7 @@ section {
 
 .table-earning tbody tr:hover td {
     color: #555;
-    cursor: pointer;
+    #cursor: pointer;
 }
 
 .table-striped tbody tr:nth-of-type(odd) {
@@ -4474,10 +4477,10 @@ section {
         overflow: visible;
     }
 }
-
 .table-data2 {
     border-collapse: collapse;
     overflow: visible;
+    z-index: 10;
 }
 
 .table-data2.table thead th {
@@ -4497,6 +4500,7 @@ section {
 
 .table-data2.table tbody {
     background: #fff;
+    z-index: 10;
 }
 
 .table-data2.table tbody tr td:first-child {
@@ -4611,6 +4615,7 @@ section {
     -moz-box-pack: end;
     -ms-flex-pack: end;
     justify-content: flex-end;
+    z-index: 255;
 }
 
 .table-data-feature .item {
@@ -4623,8 +4628,15 @@ section {
     border-radius: 100%;
     background: #e5e5e5;
     margin-right: 5px;
+    z-index: 255;
 }
+.items-123{
+    display: block;
+    width: 150px;
+    height: 150px;
+    position: relative;
 
+}
 .table-data-feature .item:last-child {
     margin-right: 0;
 }
@@ -4640,6 +4652,7 @@ section {
     -ms-transform: translate(-50%, -50%);
     -o-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
+    z-index: 255;
 }
 
 .block-email {
@@ -4735,7 +4748,7 @@ section {
 .copyright {
     text-align: center;
     padding: 60px 0;
-    padding-top: 20px;
+    padding-top: 80%;
 }
 
 .copyright p {

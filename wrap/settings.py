@@ -25,7 +25,7 @@ SECRET_KEY = 'ee64gxs8o&aay!8gc7b-9&32e0a53lxq928rhwztjq74av@(=s'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0', '192.168.43.3']
+ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0', '114.202.123.193','35.200.9.22']
 
 
 # Application definition
@@ -79,7 +79,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'crashMan', # DB명
         'USER': 'root', # 데이터베이스 계정
-        'PASSWORD': '123123', # 계정 비밀번호
+        'PASSWORD': '5', # 계정 비밀번호
     }
 }
 
