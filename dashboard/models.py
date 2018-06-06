@@ -5,7 +5,6 @@ from django.utils import timezone
 class Vm(models.Model):
     VM_Name = models.CharField(max_length=30)
     VM_ip = models.CharField(max_length=20)
-    
     Program = models.CharField(max_length=30)
     Port = models.CharField(max_length=10)
     Fuzzer = models.CharField(max_length=30)
