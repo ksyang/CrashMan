@@ -1,6 +1,12 @@
 {% extends 'dashboard/base.html' %}
 
 {% block content %}
+<script>
+    function good() {
+    var value = selectObject.value;
+    alert(value);
+}
+</script>
             <!-- MAIN CONTENT-->
             <div class="main-content">
                 <div class="section__content section__content--p30">
@@ -32,9 +38,10 @@
                                                 <td>{{docker.Port}}</td>
                                                 <td>
                                                     <div class="table-data-feature">
-                                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                        <a href="{% url 'docker_delete' Docker_name=docker.Docker_Name %}"><button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
                                                             <i class="zmdi zmdi-delete"></i>
                                                         </button>
+                                                    </a>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -52,6 +59,24 @@
                                     </div>
                                     <div class="card-body card-block">
                                         <form action="" method="post" enctype="multipart/form-data" class="form-horizontal" id="form1">{% csrf_token %}
+                                                                                        <div class="row form-group">
+                                                <div class="col col-md-3">
+                                                    <label for="selectSm" class=" form-control-label">Default Program</label>
+                                                </div>
+                                                <div class="col-12 col-md-9">
+                                                        {{form.Program}}
+                                                        <small class="form-text text-muted"> if you want default program</small>
+                                                </div>
+                                            </div>
+                                                                                        <div class="row form-group">
+                                                <div class="col col-md-3">
+                                                    <label for="text-input" class=" form-control-label">User Program</label>
+                                                </div>
+                                                <div class="col-12 col-md-9">
+                                                    {{form.User_Program}}
+                                                    <small class="form-text text-muted"> &nbsp;</small>
+                                                </div>
+                                            </div>
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
                                                     <label for="text-input" class=" form-control-label">DockerName</label>
@@ -90,26 +115,10 @@
                                                     <small class="form-text text-muted"> &nbsp;</small>
                                                 </div>
                                             </div>                                                                        
-                                            <div class="row form-group">
-                                                <div class="col col-md-3">
-                                                    <label for="text-input" class=" form-control-label">User Program</label>
-                                                </div>
-                                                <div class="col-12 col-md-9">
-                                                    {{form.User_Program}}
-                                                    <small class="form-text text-muted"> &nbsp;</small>
-                                                </div>
-                                            </div>
+
                   
-                                            <div class="row form-group">
-                                                <div class="col col-md-3">
-                                                    <label for="selectSm" class=" form-control-label">Default Program</label>
-                                                </div>
-                                                <div class="col-12 col-md-9">
-                                                        {{form.Program}}
-                                                        <small class="form-text text-muted"> if you want default program</small>
-                                                </div>
-                                            </div>
-                                                                                <div class="card-footer">
+
+                                            <div class="card-footer">
                                         <button type="submit" class="btn btn-primary btn-sm">
                                             <i class="fa fa-dot-circle-o" form="form1"></i> Submit
                                         </button>

@@ -34,7 +34,9 @@ def crash_view(request,ip,program):
 def vm_delete(request,Vm_name):
     vm=Vm.objects.all().filter(VM_Name=Vm_name)
     for i in vm:
-        print (i.VM_Name)
         Crash.objects.filter(Program=i.Program,VM_ip=i.VM_ip).delete()
     Vm.objects.filter(VM_Name=Vm_name).delete()
     return redirect('post_list')
+def docker_delete(request,Docker_name):
+    Docker.objects.filter(Docker_Name=Docker_name).delete()
+    return redirect('form_view')

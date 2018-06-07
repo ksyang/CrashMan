@@ -3,18 +3,48 @@ from .models import Vm,Crash,Docker
 from django import *
 
 Program_list= [
+    ('Select','Select'),
     ('ImageMagick', 'ImageMagick'),
-    ('cantaloupe', 'Cantaloupes'),
-    ('mango', 'Mangoes'),
-    ('honeydew', 'Honeydews'),
+    ('Git', 'Git'),
+    ('Linux', 'Linux'),
 ]
+onchange="""(function() {
 
+if(this.value=='ImageMagick'){
+    document.getElementById('user_p').value = 'ImageMagick';
+    document.getElementById('dock_hub').value = 'https://ImageMagick.com';
+    document.getElementById('fuzzer').value = 'afl';
+}
+else if(this.value=='Git'){
+    document.getElementById('user_p').value = 'Git';
+    document.getElementById('dock_hub').value = 'https://Git.com';
+    document.getElementById('fuzzer').value = 'afl';
+}
+else if(this.value=='Linux'){
+    document.getElementById('user_p').value = 'Linux';
+    document.getElementById('dock_hub').value = 'https://Linux.com';
+    document.getElementById('fuzzer').value = 'afl';
+}
+document.getElementById('user_p').readOnly = true;
+document.getElementById('dock_hub').readOnly = true;
+document.getElementById('fuzzer').readOnly = true;
+if(this.value=='Select'){
+    document.getElementById('user_p').value = '';
+    document.getElementById('dock_hub').value = '';
+    document.getElementById('fuzzer').value = '';
+    document.getElementById('user_p').readOnly = false;
+    document.getElementById('dock_hub').readOnly = false;
+    document.getElementById('fuzzer').readOnly = false;
+    }
+
+}.bind(this))()
+"""
 class DockerForm(forms.ModelForm):
-    Program = forms.CharField(max_length=30, widget=forms.Select(choices=Program_list),required = False)
-    User_Program = forms.CharField(max_length=30,required = False, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    DockerHub = forms.CharField(max_length=70, widget=forms.TextInput(attrs={'placeholder': 'https://example.com','class':'form-control'}),required = False)
+    Program = forms.ChoiceField(choices=Program_list, widget=forms.Select(attrs={'onChange': onchange}),required = False)
+    User_Program = forms.CharField(max_length=30,required = False, widget=forms.TextInput(attrs={'class': 'form-control','id':'user_p'}))
+    DockerHub = forms.CharField(max_length=70, widget=forms.TextInput(attrs={'placeholder': 'https://example.com','class':'form-control','id':'dock_hub'}),required = False)
     Docker_Name = forms.CharField(max_length=30, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    Fuzzer = forms.CharField(max_length=30,required = False, widget=forms.TextInput(attrs={'class': 'form-control','placeholder':'afl'}))
+    Fuzzer = forms.CharField(max_length=30,required = False, widget=forms.TextInput(attrs={'class': 'form-control','placeholder':'afl','id':'fuzzer'}))
     Port = forms.CharField(max_length=30, widget=forms.TextInput(attrs={'class': 'form-control'}))
     class Meta:
         model = Docker
