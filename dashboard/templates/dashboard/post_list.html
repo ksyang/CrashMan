@@ -2,13 +2,26 @@
  {% load staticfiles %}
 {% block content %}
 <script>
-$('button').click(function(event) {
-    event.stopPropagation();
-    alert("adsfasdfasf");
-});
+window.onload=function()
+{
+    Snackbar();
+}
+function Pingshow() {
+    // Get the snackbar DIV
+    var x = document.getElementById("snackbar");
+    x.className = "show";
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+function Snackbar(){
+    {% if DelSuc == 1 %}
+        var DelSuc = document.getElementById("DelSuc");
+        DelSuc.className = "show";
+        setTimeout(function(){ DelSuc.className = DelSuc.className.replace("show", ""); }, 3000);
+    {% endif %}
+}
 </script>
             <!-- MAIN CONTENT-->
-            <div class="main-content">
+            <div class="main-content" >
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
                         <div class="row">
@@ -121,12 +134,14 @@ $('button').click(function(event) {
                                                     {% if not Vm.Port == 'None' %}
                                                     <div class="table-data-feature">
                                                         <button class="item" data-toggle="tooltip" data-placement="top" title="Ping">
-                                                            <i class="zmdi zmdi-mail-send"></i>
+                                                            <i class="zmdi zmdi-mail-send" onclick="Pingshow()"></i>
                                                         </button>
                                                         <a href="{% url 'vm_delete' Vm_name=Vm.VM_Name %}"><button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
                                                             <i class="zmdi zmdi-delete"></i>
                                                         </button>
                                                     </a>
+
+
                                                     </div>
                                                     {% endif %}
                                                 </td>
@@ -140,7 +155,8 @@ $('button').click(function(event) {
                                 <!-- END DATA TABLE -->
                             </div>
                         </div>
-
+<div id="DelSuc">Delete Success</div>
+<div id="snackbar">It is currently working.</div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="copyright">
