@@ -17,7 +17,7 @@ def vm():
    if request.method == 'POST':           #get crash      
       fuzzer = request.form['fuzzer']
       fuzzingProgram = request.form['fuzzingProgram']
-			fuzzing_os = request.form['fuzzing_os']
+      fuzzing_os = request.form['fuzzing_os']
       alias = request.form['alias']
       pingPort = request.form['pingPort']
 			
