@@ -1,5 +1,5 @@
 {% extends 'dashboard/base.html' %}
- 
+ {% load staticfiles %}
 {% block content %}
 <script>
 $('button').click(function(event) {
@@ -57,7 +57,7 @@ $('button').click(function(event) {
                                                 <i class="zmdi zmdi-memory"></i>
                                             </div>
                                             <div class="text">
-                                                <h2>{{Dockernum}}</h2>
+                                                <h2>3</h2>
                                                 <span>Total Docker</span>
                                             </div>
                                         </div>
@@ -72,7 +72,7 @@ $('button').click(function(event) {
                                                 <i class="zmdi zmdi-run"></i>
                                             </div>
                                             <div class="text">
-                                                <h2>0</h2>
+                                                <h2>{{Dockernum}}</h2>
                                                 <span>Run docker</span>
                                             </div>
                                         </div>
@@ -90,6 +90,7 @@ $('button').click(function(event) {
                                     <table class="table table-data2">
                                         <thead>
                                             <tr>
+                                                <th>Os</th>
                                                 <th>VM_Name</th>
                                                 <th>VM_ip</th>
                                                 <th>Fuzzer</th>
@@ -104,6 +105,11 @@ $('button').click(function(event) {
                                             <div class="crash">
                                             <tr class="tr-shadow">
                                                 <td onclick=location.href="{% url 'crash_view' ip=Vm.VM_ip program=Vm.Program %}";>
+                                                    {% if Vm.Os == 'D' %} <img src="{% static 'images/icon/docker_icon.png' %}" class="os_icon"> 
+                                                    {% elif Vm.Os == 'L' %} <img src="{% static 'images/icon/linux_icon.png' %}" class="os_icon"> 
+                                                    {% elif Vm.Os == 'W' %} <img src="{% static 'images/icon/windows_icon.png' %}" class="os_icon"> {% endif %}
+                                                </td>
+                                                <td onclick=location.href="{% url 'crash_view' ip=Vm.VM_ip program=Vm.Program %}";>
                                                 {{Vm.VM_Name}}</td>
                                                 <td onclick=location.href="{% url 'crash_view' ip=Vm.VM_ip program=Vm.Program %}";>
                                                     <span class="block-email">{{Vm.VM_ip}}</span>
@@ -112,6 +118,7 @@ $('button').click(function(event) {
                                                  <td class="desc" onclick=location.href="{% url 'crash_view' ip=Vm.VM_ip program=Vm.Program %}";>{{Vm.Program}}</td>
                                                  <td onclick=location.href="{% url 'crash_view' ip=Vm.VM_ip program=Vm.Program %}";>{{Vm.Port}}</td>
                                                 <td>
+                                                    {% if not Vm.Port == 'None' %}
                                                     <div class="table-data-feature">
                                                         <button class="item" data-toggle="tooltip" data-placement="top" title="Ping">
                                                             <i class="zmdi zmdi-mail-send"></i>
@@ -121,6 +128,7 @@ $('button').click(function(event) {
                                                         </button>
                                                     </a>
                                                     </div>
+                                                    {% endif %}
                                                 </td>
                                             </tr>
                                         </div>

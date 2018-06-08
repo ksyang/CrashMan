@@ -1,0 +1,66 @@
+[33mcommit 962540291c4f55e298dc6cd54f506821993b9402[m
+Author: ssgkmd <tlagyqls7@naver.com>
+Date:   Thu Jun 7 06:29:51 2018 +0000
+
+    perfect dockerform
+
+[33mcommit fdefdef82ae05e99d684e0609d44d9d5d4fcb692[m
+Author: ssgkmd <tlagyqls7@naver.com>
+Date:   Wed Jun 6 11:07:03 2018 +0000
+
+    add Docker form
+
+[33mcommit d843f19cdb68c370093b16234e9a674df7f5f1f0[m
+Author: ssgskid <ks8171235@naver.com>
+Date:   Tue Jun 5 21:58:12 2018 -0700
+
+    modify icon
+
+[33mcommit 93f7f4a89adba8779e690dd579c6f2ac6bf626da[m
+Author: ssgskid <ks8171235@naver.com>
+Date:   Tue Jun 5 21:00:56 2018 -0700
+
+    add vm receiver
+
+[33mcommit 639e2a70f2f9022b6cb5fd2f1976c946e7894fdd[m
+Author: ssgkmd <tlagyqls7@naver.com>
+Date:   Wed Jun 6 03:54:21 2018 +0000
+
+    modify icons
+
+[33mcommit bc33f02357ce3783d37a0c150f04f932f5443f86[m
+Author: ssgkmd <tlagyqls7@naver.com>
+Date:   Tue Jun 5 13:59:17 2018 +0000
+
+    Function implementation completed
+
+[33mcommit ae82c3b30b8708489c2236bf5864ee545470d3fa[m
+Merge: c097f7c 17f2000
+Author: ssgskid <ks8171235@naver.com>
+Date:   Fri Jun 1 02:35:01 2018 -0700
+
+    Merge branch 'master' of https://github.com/ssgskid/CrashMan
+
+[33mcommit c097f7ce3f88626727243c48a86adbf37ece33e6[m
+Author: ssgskid <ks8171235@naver.com>
+Date:   Fri Jun 1 02:34:36 2018 -0700
+
+    add crash file reciever
+
+[33mcommit 17f20008197bf3ea181193cda338fb2f893d168a[m
+Author: ghkdtndyd <ghkdtndyd@naver.com>
+Date:   Fri Jun 1 02:31:08 2018 -0700
+
+    add form
+
+[33mcommit 867601eaab1d95c275d6f71dbbda064ba6efc805[m
+Author: ssgkmd <tlagyqls7@naver.com>
+Date:   Fri Jun 1 02:27:15 2018 -0700
+
+    initsite
+
+[33mcommit 1230aeff17e80615c74c11392c29eb917521a354[m
+Author: KSYang <ks8171235@naver.com>
+Date:   Fri Jun 1 18:25:49 2018 +0900
+
+    Initial commit

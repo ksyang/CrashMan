@@ -4,15 +4,15 @@ from django import *
 
 Program_list= [
     ('Select','Select'),
-    ('ImageMagick', 'ImageMagick'),
+    ('ijgjpeg', 'ijgjpeg'),
     ('Git', 'Git'),
     ('Linux', 'Linux'),
 ]
 onchange="""(function() {
 
-if(this.value=='ImageMagick'){
-    document.getElementById('user_p').value = 'ImageMagick';
-    document.getElementById('dock_hub').value = 'https://ImageMagick.com';
+if(this.value=='ijgjpeg'){
+    document.getElementById('user_p').value = 'ijgjpeg';
+    document.getElementById('dock_hub').value = 'ssgskid/afl-ijgjpeg';
     document.getElementById('fuzzer').value = 'afl';
 }
 else if(this.value=='Git'){
@@ -42,10 +42,10 @@ if(this.value=='Select'){
 class DockerForm(forms.ModelForm):
     Program = forms.ChoiceField(choices=Program_list, widget=forms.Select(attrs={'onChange': onchange}),required = False)
     User_Program = forms.CharField(max_length=30,required = False, widget=forms.TextInput(attrs={'class': 'form-control','id':'user_p'}))
-    DockerHub = forms.CharField(max_length=70, widget=forms.TextInput(attrs={'placeholder': 'https://example.com','class':'form-control','id':'dock_hub'}),required = False)
+    DockerHub = forms.CharField(max_length=70, widget=forms.TextInput(attrs={'placeholder': 'Docker Hub Repo','class':'form-control','id':'dock_hub'}),required = False)
     Docker_Name = forms.CharField(max_length=30, widget=forms.TextInput(attrs={'class': 'form-control'}))
     Fuzzer = forms.CharField(max_length=30,required = False, widget=forms.TextInput(attrs={'class': 'form-control','placeholder':'afl','id':'fuzzer'}))
-    Port = forms.CharField(max_length=30, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    Port = forms.CharField(max_length=30, widget=forms.TextInput(attrs={'class': 'form-control','value':'35.200.9.22'}))
     class Meta:
         model = Docker
         exclude = ()

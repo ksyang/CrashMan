@@ -3,21 +3,22 @@ from django.utils import timezone
 from django import *
 
 class Vm(models.Model):
-    VM_Name = models.CharField(max_length=30)
+    VM_Name = models.CharField(max_length=30,primary_key=True)
     VM_ip = models.CharField(max_length=20)
     Program = models.CharField(max_length=30)
     Port = models.CharField(max_length=10)
     Fuzzer = models.CharField(max_length=30)
+    Os=models.CharField(max_length=10)
 
 class Crash(models.Model):
-    Crash_Name = models.CharField(max_length=30)
+    Crash_Name = models.CharField(max_length=30,primary_key=True)
     Exploitable = models.CharField(max_length=30)
     Date = models.DateTimeField(blank=True, null=True)
     Program = models.CharField(max_length=30)
     VM_ip = models.CharField(max_length=20)
 
 class Docker(models.Model):
-    Docker_Name = models.CharField(max_length=30)
+    Docker_Name = models.CharField(max_length=30,primary_key=True)
     Program = models.CharField(max_length=30)
     Fuzzer = models.CharField(max_length=30)
-    Port = models.CharField(max_length=10)
+    Port = models.CharField(max_length=30)
