@@ -49,11 +49,3 @@ class DockerForm(forms.ModelForm):
     class Meta:
         model = Docker
         exclude = ()
-'''
-class UserForm(forms.Form):
-    first_name= forms.CharField(max_length=100)
-    last_name= forms.CharField(max_length=100)
-    email= forms.EmailField()
-    age= forms.IntegerField()
-    favorite_fruit= forms.CharField(label='What is your want run program', widget=forms.Select(choices=FRUIT_CHOICES))
-    '''
