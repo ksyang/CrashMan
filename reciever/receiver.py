@@ -17,12 +17,13 @@ def vm():
    if request.method == 'POST':           #get crash      
       fuzzer = request.form['fuzzer']
       fuzzingProgram = request.form['fuzzingProgram']
+			fuzzing_os = request.form['fuzzing_os']
       alias = request.form['alias']
       pingPort = request.form['pingPort']
-
+			
       con = mysql.connect()
       cursor = con.cursor()
-      query = "INSERT INTO dashboard_vm (VM_Name, VM_ip, Fuzzer, Program, Port) VALUES ('%s', '%s', '%s', '%s', '%s')" % (alias, request.remote_addr ,fuzzer, fuzzingProgram, pingPort)
+      query = "INSERT INTO dashboard_vm (VM_Name, VM_ip, Fuzzer, Program, Port, Os) VALUES ('%s', '%s', '%s', '%s', '%s', '%s')" % (alias, request.remote_addr ,fuzzer, fuzzingProgram, pingPort, fuzzing_os)
       cursor.execute(query)
       con.commit()
       cursor.close()
