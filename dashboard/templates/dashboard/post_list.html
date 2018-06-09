@@ -5,12 +5,20 @@
 window.onload=function()
 {
     Snackbar();
+    Pingshow();
 }
 function Pingshow() {
-    // Get the snackbar DIV
-    var x = document.getElementById("snackbar");
+    { % if PingResult == 'success' % }
+    var x = document.getElementById("pingSuccess");
     x.className = "show";
     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    { % endif % }
+
+    { % if PingResult == 'fail' % }
+    var x = document.getElementById("pingFail");
+    x.className = "show";
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    { % endif % }
 }
 function Snackbar(){
     {% if DelSuc == 1 %}
@@ -133,13 +141,16 @@ function Snackbar(){
                                                 <td>
                                                     {% if not Vm.Port == 'None' %}
                                                     <div class="table-data-feature">
-                                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Ping">
-                                                            <i class="zmdi zmdi-mail-send" onclick="Pingshow()"></i>
-                                                        </button>
-                                                        <a href="{% url 'vm_delete' Vm_name=Vm.VM_Name %}"><button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                        <a href="{ % url 'ping' IP=Vm.VM_IP Port=Vm.Port % }">
+                                                            <button class="item" data-toggle="tooltip" data-placement="top" title="Ping">
+                                                            <i class="zmdi zmdi-mail-send"></i>
+                                                            </button>
+                                                        </a>
+                                                        <a href="{% url 'vm_delete' Vm_name=Vm.VM_Name %}">
+                                                            <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
                                                             <i class="zmdi zmdi-delete"></i>
-                                                        </button>
-                                                    </a>
+                                                            </button>
+                                                        </a>
 
 
                                                     </div>
@@ -156,7 +167,8 @@ function Snackbar(){
                             </div>
                         </div>
 <div id="DelSuc">Delete Success</div>
-<div id="snackbar">It is currently working.</div>
+<div id="pingSuccess">Ping Success!</div>
+<div id="pingFail">Ping Fail!</div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="copyright">

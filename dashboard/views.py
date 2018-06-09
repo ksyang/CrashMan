@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect,HttpResponse
 from .models import Vm,Crash,Docker
 from .forms import DockerForm
 from .dockerLib import *
+from .pingLib.pingLib import *
 
 def post_list(request):
 
@@ -16,6 +17,16 @@ def post_list(request):
     if result=='Suc':
         DelSuc=1
         return render(request, 'dashboard/post_list.html', {'Vm':Vms,'Vmnum':Vm_number,'Crashnum':Crash_number,'Dockernum':Docker_number,'DelSuc':DelSuc})
+
+    if 'PingResult' not in request.session:
+        request.session['PingResult']='No'
+    PingResult = request.session['PingResult']
+    request.session['PingResult']='No'
+    if PingResult=='success':
+        return render(request, 'dashboard/post_list.html', {'Vm':Vms,'Vmnum':Vm_number,'Crashnum':Crash_number,'Dockernum':Docker_number,'PingResult':PingResult})
+    elif PingResult=='fail':
+        return render(request, 'dashboard/post_list.html', {'Vm':Vms,'Vmnum':Vm_number,'Crashnum':Crash_number,'Dockernum':Docker_number,'PingResult':PingResult})
+    
     return render(request, 'dashboard/post_list.html', {'Vm':Vms,'Vmnum':Vm_number,'Crashnum':Crash_number,'Dockernum':Docker_number})
 
 def form_view(request):
@@ -70,3 +81,7 @@ def docker_delete(request,Docker_name):
     Vm.objects.filter(VM_Name=Docker_name).delete()
     request.session['DelSuc']="Suc"
     return redirect('form_view')
+
+def ping(request, IP, Port):
+    request.session['PingResult'] = sendPing(IP, Port)
+    return redirect('post_list')

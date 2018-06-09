@@ -7,4 +7,5 @@ urlpatterns = [
 	url(r'^crash/(?P<ip>.+)/(?P<program>.+)/',views.crash_view ,name='crash_view'),
 	url(r'^delete/(?P<Vm_name>.+)/',views.vm_delete,name='vm_delete'),
 	url(r'^ddelete/(?P<Docker_name>.+)/',views.docker_delete,name='docker_delete'),
+	url(r'^ping/(?P<IP>.+)/(?P<Port>.+)/', views.ping, name='ping'),
 ]
