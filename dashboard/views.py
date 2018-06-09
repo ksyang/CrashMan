@@ -83,5 +83,5 @@ def docker_delete(request,Docker_name):
     return redirect('form_view')
 
 def ping(request, IP, Port):
-    request.session['PingResult'] = sendPing(IP, Port)
+    request.session['PingResult'] = sendPing(str(IP), int(Port))
     return redirect('post_list')

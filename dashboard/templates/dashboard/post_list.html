@@ -8,21 +8,24 @@ window.onload=function()
     Pingshow();
 }
 function Pingshow() {
-    { % if PingResult == 'success' % }
-    var x = document.getElementById("pingSuccess");
-    x.className = "show";
-    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-    { % endif % }
+    {% if PingResult == 'success' %}
+	var x = document.getElementById("DelSuc");
+	x.innerHTML = "Ping Success!";
+	x.className = "show";
+	setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    {% endif %}
 
-    { % if PingResult == 'fail' % }
-    var x = document.getElementById("pingFail");
-    x.className = "show";
-    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-    { % endif % }
+    {% if PingResult == 'fail' %}
+	var x = document.getElementById("DelSuc");
+	x.innerHTML = "Ping Fail!";
+	x.className = "show";
+	setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    {% endif %}
 }
 function Snackbar(){
     {% if DelSuc == 1 %}
         var DelSuc = document.getElementById("DelSuc");
+        DelSuc.innerHTML = "Delete Success";
         DelSuc.className = "show";
         setTimeout(function(){ DelSuc.className = DelSuc.className.replace("show", ""); }, 3000);
     {% endif %}
@@ -141,7 +144,7 @@ function Snackbar(){
                                                 <td>
                                                     {% if not Vm.Port == 'None' %}
                                                     <div class="table-data-feature">
-                                                        <a href="{ % url 'ping' IP=Vm.VM_IP Port=Vm.Port % }">
+                                                        <a href="{% url 'ping' IP=Vm.VM_ip Port=Vm.Port %}">
                                                             <button class="item" data-toggle="tooltip" data-placement="top" title="Ping">
                                                             <i class="zmdi zmdi-mail-send"></i>
                                                             </button>
@@ -167,8 +170,6 @@ function Snackbar(){
                             </div>
                         </div>
 <div id="DelSuc">Delete Success</div>
-<div id="pingSuccess">Ping Success!</div>
-<div id="pingFail">Ping Fail!</div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="copyright">
