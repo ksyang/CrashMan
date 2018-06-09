@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect,HttpResponse
 from .models import Vm,Crash,Docker
 from .forms import DockerForm
-from .dockerLib import *
+from .dockerLib.dockerLib import *
 from .pingLib.pingLib import *
 
 def post_list(request):
@@ -51,7 +51,7 @@ def form_view(request):
             if form.Fuzzer=="":
                 form.Fuzzer="afl"
             form.save()
-            #dockerInit(form.Docker_Name,form.Program,form.Fuzzer,dockerhub_url,form.Port)
+            dockerRun(form.Docker_Name, form.Program, form.Fuzzer, dockerhub_url, form.Port)
             request.session['DocSuc']="Suc"
             return redirect('form_view')
         else:
@@ -80,6 +80,7 @@ def docker_delete(request,Docker_name):
     Docker.objects.filter(Docker_Name=Docker_name).delete()
     Vm.objects.filter(VM_Name=Docker_name).delete()
     request.session['DelSuc']="Suc"
+    dockerStop(Docker_name)
     return redirect('form_view')
 
 def ping(request, IP, Port):

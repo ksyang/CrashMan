@@ -3,7 +3,7 @@ import dockerLib
 a = str(input())
 
 if a == '1':
-	dockerLib.dockerRun("ssgskid", "ijgjpeg", "afl", "ssgskid/afl-ijgjpeg", "http://35.200.9.22:30001", "dockerLibTest")
+	dockerLib.dockerRun("ssgskid", "ijgjpeg", "afl", "ssgskid/afl-ijgjpeg", "http://35.200.9.22:30001")
 	exit()
 if a == '2':
 	dockerLib.dockerStop("ssgskid")
