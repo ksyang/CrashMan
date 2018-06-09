@@ -142,13 +142,16 @@ function Snackbar(){
                                                  <td class="desc" onclick=location.href="{% url 'crash_view' ip=Vm.VM_ip program=Vm.Program %}";>{{Vm.Program}}</td>
                                                  <td onclick=location.href="{% url 'crash_view' ip=Vm.VM_ip program=Vm.Program %}";>{{Vm.Port}}</td>
                                                 <td>
-                                                    {% if not Vm.Port == 'None' %}
+                                                    {% if not Vm.Port == 'None' or not Vm.Os == 'D' %}
                                                     <div class="table-data-feature">
+                                                        {% if not Vm.Port == 'None' %}
                                                         <a href="{% url 'ping' IP=Vm.VM_ip Port=Vm.Port %}">
                                                             <button class="item" data-toggle="tooltip" data-placement="top" title="Ping">
                                                             <i class="zmdi zmdi-mail-send"></i>
                                                             </button>
                                                         </a>
+                                                        &nbsp;&nbsp;
+                                                        {% endif %}
                                                         <a href="{% url 'vm_delete' Vm_name=Vm.VM_Name %}">
                                                             <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
                                                             <i class="zmdi zmdi-delete"></i>
