@@ -5,8 +5,8 @@ from django import *
 Program_list= [
     ('Select','Select'),
     ('ijgjpeg', 'ijgjpeg'),
-    ('Git', 'Git'),
-    ('Linux', 'Linux'),
+    ('binutils', 'binutils'),
+    ('pcre2', 'pcre2'),
 ]
 onchange="""(function() {
 
@@ -15,14 +15,14 @@ if(this.value=='ijgjpeg'){
     document.getElementById('dock_hub').value = 'ssgskid/afl-ijgjpeg';
     document.getElementById('fuzzer').value = 'afl';
 }
-else if(this.value=='Git'){
-    document.getElementById('user_p').value = 'Git';
-    document.getElementById('dock_hub').value = 'https://Git.com';
+else if(this.value=='binutils'){
+    document.getElementById('user_p').value = 'binutils';
+    document.getElementById('dock_hub').value = 'ssgskid/afl-binutils';
     document.getElementById('fuzzer').value = 'afl';
 }
-else if(this.value=='Linux'){
-    document.getElementById('user_p').value = 'Linux';
-    document.getElementById('dock_hub').value = 'https://Linux.com';
+else if(this.value=='pcre2'){
+    document.getElementById('user_p').value = 'pcre2';
+    document.getElementById('dock_hub').value = 'ssgskid/afl-pcre2';
     document.getElementById('fuzzer').value = 'afl';
 }
 document.getElementById('user_p').readOnly = true;
@@ -45,7 +45,7 @@ class DockerForm(forms.ModelForm):
     DockerHub = forms.CharField(max_length=70, widget=forms.TextInput(attrs={'placeholder': 'Docker Hub Repo','class':'form-control','id':'dock_hub'}),required = False)
     Docker_Name = forms.CharField(max_length=30, widget=forms.TextInput(attrs={'class': 'form-control'}))
     Fuzzer = forms.CharField(max_length=30,required = False, widget=forms.TextInput(attrs={'class': 'form-control','placeholder':'afl','id':'fuzzer'}))
-    Port = forms.CharField(max_length=30, widget=forms.TextInput(attrs={'class': 'form-control','value':'35.200.9.22'}))
+    Port = forms.CharField(max_length=30, widget=forms.TextInput(attrs={'class': 'form-control','value':'http://35.200.9.22:30001'}))
     class Meta:
         model = Docker
         exclude = ()
