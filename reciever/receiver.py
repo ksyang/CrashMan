@@ -54,5 +54,37 @@ def crash():
       res.headers['Content-Type'] = 'application/json'
       return res
 
+   if request.method == 'PUT':
+      crashName = request.form['crashName']
+      con = mysql.connect()
+      cursor = con.cursor()
+      query = "SELECT * FROM dashboard_crash WHERE Crash_Name='%s'" % (crashName)
+      cursor.execute(query)
+      
+      queryResult = cursor.fetchall()
+      for row in queryResult: 
+          print queryResult(row)
+
+      cursor.close()
+      sendData = {'result': 'success'}
+      json_data = json.dumps(sendData, ensure_ascii=False)
+      res = make_response(json_data)
+      res.headers['Content-Type'] = 'application/json'
+      return res
+
+   if request.method == 'DELETE':
+      crashName = request.form['crashName']
+      con = mysq.connect()
+      cursor = con.cursor()
+      query = "DELETE from dashboard_crash WHERE Crash_Name = '%s'" % (crashName)
+      cursor.execute(query)
+      con.commit()
+      cursor.close()
+      sendData = {'result': 'success'}
+      json_data = json.dumps(sendData, ensure_ascii=False)
+      res = make_response(json_data)
+      res.headers['Content-Type'] = 'application/json'
+      return res
+   
 if __name__ == '__main__':
    app.run(host='0.0.0.0', port=30001, debug=True)
