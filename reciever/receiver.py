@@ -35,7 +35,8 @@ def vm():
 
 @app.route("/crash", methods=['POST', 'PUT', 'DELETE']) 
 def crash():
-   if request.method == 'POST':           #get crash      
+   if request.method == 'POST':           #get crash
+      exploitable = request.form['exploitable']
       crashName = request.form['crashName']
       fuzzingProgram = request.form['fuzzingProgram']
       now = datetime.now()
@@ -43,7 +44,7 @@ def crash():
 
       con = mysql.connect()
       cursor = con.cursor()
-      query = "INSERT INTO dashboard_crash (Crash_Name, Exploitable, Date, Program, VM_ip) VALUES ('%s', '%s', '%s', '%s', '%s')" % (crashName, 'None', formatted_date, fuzzingProgram, request.remote_addr)
+      query = "INSERT INTO dashboard_crash (Crash_Name, Exploitable, Date, Program, VM_ip) VALUES ('%s', '%s', '%s', '%s', '%s')" % (crashName, exploitable, formatted_date, fuzzingProgram, request.remote_addr)
       cursor.execute(query)
       con.commit()
       cursor.close()
