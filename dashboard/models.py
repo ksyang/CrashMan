@@ -11,7 +11,7 @@ class Vm(models.Model):
     Os=models.CharField(max_length=10)
 
 class Crash(models.Model):
-    Crash_Name = models.CharField(max_length=100,primary_key=True)
+    Crash_Name = models.CharField(max_length=110)
     Exploitable = models.CharField(max_length=50)
     Date = models.DateTimeField(blank=True, null=True)
     Program = models.CharField(max_length=50)
