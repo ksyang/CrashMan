@@ -78,9 +78,11 @@ def vm_delete(request,Vm_name):
 
 def docker_delete(request,Docker_name):
     Docker.objects.filter(Docker_Name=Docker_name).delete()
-    Vm.objects.filter(VM_Name=Docker_name).delete()
-    request.session['DelSuc']="Suc"
+    vm=Vm.objects.get(VM_Name=Docker_name)
     dockerStop(Docker_name)
+    request.session['DelSuc']="Suc"
+    Crash.objects.filter(Program=vm.Program,VM_ip=vm.VM_ip).delete()    
+    Vm.objects.filter(VM_Name=Docker_name).delete()
     return redirect('form_view')
 
 def ping(request, IP, Port):
